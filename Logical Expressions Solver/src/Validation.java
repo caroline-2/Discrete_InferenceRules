@@ -5,7 +5,6 @@ public class Validation {
         Stack<Character> stack = new Stack<>();
         boolean lastWasOperator = false;
         boolean lastWasOperand = false;
-        int count = 0;
         for (char ch : expression.toCharArray()) {
             if (ch == ' ') {
                 continue;
@@ -13,13 +12,11 @@ public class Validation {
                 stack.push(ch);
                 lastWasOperator = false;
                 lastWasOperand = false;
-                count = 0;
             } else if (ch == ')') {
-                if (stack.isEmpty() || lastWasOperator || count < 2) return false;
+                if (stack.isEmpty() || lastWasOperator ) return false;
                 stack.pop();
                 lastWasOperand = true;
                 lastWasOperator = false;
-                count = 1;
             } else if (isOperator(ch)) {
                 if (lastWasOperator && ch != '~') return false;
                 lastWasOperator = true;
@@ -28,12 +25,11 @@ public class Validation {
                 if (lastWasOperand) return false;
                 lastWasOperand = true;
                 lastWasOperator = false;
-                count++;
             } else {
                 return false;
             }
         }
-        return stack.isEmpty() && !lastWasOperator && count <= 2;
+        return stack.isEmpty() && !lastWasOperator ;
     }
 
     private static boolean isOperator(char ch) {
