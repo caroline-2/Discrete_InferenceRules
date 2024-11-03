@@ -18,7 +18,7 @@ public class InfixToPostfix {
                 continue;
             }else if (c == '(') {
                 st.push(c);
-            } else if (Character.isLetter(c)) {
+            } else if (Character.isLetter(c) && c != 'v') {
                 result.append(c);
             } else if (c == ')') {
                 while (!st.isEmpty() && st.peek() != '(') {
