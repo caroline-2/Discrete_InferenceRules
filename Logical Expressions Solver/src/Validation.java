@@ -39,29 +39,5 @@ public class Validation {
     private static boolean isOperator(char ch) {
         return ch == '~' || ch == '^' || ch == 'v' || ch == '>';
     }
-    public static void main(String[] args) {
-        String[] testExpressions = {
-                "P ^ Q v R",          // Valid
-                "(P ^ Q) v R",        // Valid
-                "P ^ Q v R ^",        // Invalid: ends with an operator
-                "(P ^ Q v R",         // Invalid: unmatched parenthesis
-                "P ^ (Q v R)",        // Valid
-                "P ^ Q R",            // Invalid: no operator between Q and R
-                "P ^ (Q v R) ^ S",    // Valid
-                "(P v Q) ^ (R > S)",  // Valid
-                "P ^ (Q > (R ^ S))",  // Valid
-                "P ^ Q v",            // Invalid: ends with an operator
-                "((P ^ Q))",          // Valid
-                "P ^ Q) v R",         // Invalid: unmatched parenthesis
-                "(P ^ (Q v R)) v",    // Invalid: ends with an operator
-                "P ^ Q v R ^ S",      // Valid
-                "P v (Q ^ R)",        // Valid
-                "(P ^ Q) v (R ^ S)",  // Valid
-                "(P ^ Q) R",          // Invalid: no operator between Q and R
-        };
-
-        for (String expression : testExpressions) {
-            System.out.println("Expression: \"" + expression + "\" is valid: " + Validation.isValid(expression));
-        }
     }
-}
+
